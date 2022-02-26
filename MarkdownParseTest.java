@@ -47,8 +47,32 @@ public class MarkdownParseTest {
         assertEquals(Image, MarkdownParse.getLinks(ImageTest));
     }
 
-    // @Test
-    // public void testInfiniteLoop() throws IOException {
-    //     ArrayList<String> Infin
-    // }
+    @Test
+    public void testSnippet1() throws IOException {
+        ArrayList<String> snippet1 = new ArrayList<>();
+        snippet1.add("`google.com");
+        snippet1.add("ucsd.edu");
+        String snippet1Test = MarkdownParse.converter("snippet1.md");
+        assertEquals(snippet1, MarkdownParse.getLinks(snippet1Test));
+    }
+
+    @Test
+    public void testSnippet2() throws IOException {
+        ArrayList<String> snippet2 = new ArrayList<>();
+        snippet2.add("a.com");
+        snippet2.add("a.com((");
+        snippet2.add("example.com");
+        String snippet2Test = MarkdownParse.converter("snippet2.md");
+        assertEquals(snippet2, MarkdownParse.getLinks(snippet2Test));
+    }
+
+    @Test
+    public void testSnippet3() throws IOException {
+        ArrayList<String> snippet3 = new ArrayList<>();
+        snippet3.add("https://www.twitter.com");
+        snippet3.add("https://ucsd-cse15l-w22.github.io/");
+        snippet3.add("https://cse.ucsd.edu/");
+        String snippet3Test = MarkdownParse.converter("snippet3.md");
+        assertEquals(snippet3, MarkdownParse.getLinks(snippet3Test));
+    }
 }
